@@ -28,7 +28,7 @@ export function Header() {
   }, [isMenuOpen]);
 
   return (
-    <header className="fixed top-0 left-0 w-full border-b border-transparent-white backdrop-blur-md">
+    <header className="fixed top-0 left-0 z-50 w-full border-b border-transparent-white backdrop-blur-md">
       <Container className="flex h-navigation-height">
         <Link className="flex items-center text-md" href="/">
           <Logo className="m-2 ml-0 h-[1.8rem] w-[1.8rem]" />

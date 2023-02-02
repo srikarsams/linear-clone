@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import { Button, IconWrapper } from '../components/button';
 import Container from '../components/container';
 import { Hero, HeroSubTitle, HeroTitle } from '../components/hero';
+import { HeroImage } from '../components/hero-image';
 import { ChevronIcon } from '../components/icons/chevron-icon';
 
 const Home: NextPage = () => {
@@ -38,7 +39,7 @@ const Home: NextPage = () => {
               <ChevronIcon />
             </IconWrapper>
           </Button>
-          <img src="/img/hero.webp" alt="hero image" className="mt-[12.8rem]" />
+          <HeroImage />
         </Hero>
       </Container>
     </div>
