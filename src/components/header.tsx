@@ -10,11 +10,28 @@ import { Logo } from './icons/logo';
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+  React.useEffect(() => {
+    document
+      .querySelector("body")
+      ?.classList.toggle("overflow-hidden", isMenuOpen);
+  }, [isMenuOpen]);
+
+  React.useEffect(() => {
+    const closeHamburger = () => setIsMenuOpen(false);
+    window.addEventListener("resize", closeHamburger);
+    window.addEventListener("orientationchange", closeHamburger);
+
+    return () => {
+      window.removeEventListener("resize", closeHamburger);
+      window.removeEventListener("orientationchange", closeHamburger);
+    };
+  }, [isMenuOpen]);
+
   return (
     <header className="fixed top-0 left-0 w-full border-b border-white-a08 backdrop-blur-md">
       <Container className="flex h-navigation-height">
         <Link className="flex items-center text-md" href="/">
-          <Logo className="m-2 ml-0 h-[1.8rem] w-[1.8rem] sm:m-4" />
+          <Logo className="m-2 ml-0 h-[1.8rem] w-[1.8rem]" />
           Linear
         </Link>
 
@@ -26,15 +43,17 @@ export function Header() {
         >
           <nav
             className={classNames(
-              "fixed top-navigation-height left-0 h-[calc(100dvh_-_var(--navigation-height))] w-full overflow-auto bg-background transition-opacity duration-500",
+              "fixed top-navigation-height left-0 h-[calc(100dvh_-_var(--navigation-height))] w-full overflow-auto bg-background transition-opacity duration-500 sm:translate-x-0",
               "sm:relative sm:top-0 sm:block sm:h-full sm:w-auto sm:overflow-visible sm:bg-transparent sm:opacity-100",
-              isMenuOpen ? "opacity-100" : "opacity-0"
+              isMenuOpen
+                ? "translate-x-0 opacity-100"
+                : "translate-x-[-100vw] opacity-0"
             )}
           >
             <ul
               className={classNames(
                 "flex h-full flex-col sm:flex-row sm:items-center [&_li]:ml-6 [&_li]:border-b [&_li]:border-b-grey-dark sm:[&_li]:border-b-0",
-                "[&_a]:flex [&_a]:h-navigation-height [&_a]:w-full [&_a]:translate-y-8 [&_a]:items-center [&_a]:text-md [&_a]:transition-[transform,colors] [&_a]:duration-300 sm:[&_a]:translate-y-0 md:[&_a]:text-sm [&_a:hover]:text-grey",
+                "[&_a]:flex [&_a]:h-navigation-height [&_a]:w-full [&_a]:translate-y-8 [&_a]:items-center [&_a]:text-md [&_a]:transition-[transform,color] [&_a]:duration-300 sm:[&_a]:translate-y-0 md:[&_a]:text-sm [&_a:hover]:text-grey",
                 isMenuOpen ? "[&_a]:translate-y-0" : ""
               )}
             >
