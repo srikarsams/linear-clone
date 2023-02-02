@@ -107,11 +107,11 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="mt-12 border-t border-white-a08 py-[5.6rem] text-sm">
+    <footer className="mt-12 border-t border-transparent-white py-[5.6rem] text-sm">
       <Container className="flex flex-col justify-between lg:flex-row">
         <div>
           <div className="transition-color flex h-full flex-row justify-between lg:flex-col">
-            <div className="flex items-center gap-4 text-grey transition-colors hover:text-white">
+            <div className="flex items-center gap-4 text-grey transition-colors hover:text-off-white">
               <Logo className="h-4 w-4 flex-shrink-0" />
               Linear - Designed Worldwide
             </div>
@@ -136,7 +136,7 @@ export function Footer() {
                     return (
                       <li key={link.title} className="[&_a]:last:mb-0">
                         <Link
-                          className="mb-3 block text-grey transition-colors hover:text-white"
+                          className="mb-3 block text-grey transition-colors hover:text-off-white"
                           href={link.href}
                         >
                           {link.title}

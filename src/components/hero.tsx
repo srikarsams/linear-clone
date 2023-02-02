@@ -13,9 +13,15 @@ export function Hero({ children }: HeroProps) {
 }
 
 export function HeroTitle({ children }: HeroElementProps) {
-  return <h1 className="my-6 text-5xl">{children}</h1>;
+  return (
+    <h1 className="text-gradient my-6 text-6xl md:text-8xl">{children}</h1>
+  );
 }
 
 export function HeroSubTitle({ children }: HeroElementProps) {
-  return <p className="mb-12 text-lg">{children}</p>;
+  return (
+    <p className="text mb-12 text-lg text-primary-text md:text-xl">
+      {children}
+    </p>
+  );
 }
