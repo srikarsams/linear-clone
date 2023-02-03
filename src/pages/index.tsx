@@ -8,7 +8,7 @@ import { ChevronIcon } from '../components/icons/chevron-icon';
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <div className="overflow-hidden">
       <Container className="pt-[6.4rem]">
         <Hero>
           <Button
