@@ -1,15 +1,15 @@
-import { AlanIcon } from "./icons/alan-icon";
-import { ArcIcon } from "./icons/arc-icon";
-import { CashAppIcon } from "./icons/cashapp-icon";
-import { DescriptIcon } from "./icons/descript-icon";
-import { LoomIcon } from "./icons/loom-icon";
-import { MercuryIcon } from "./icons/mercury-icon";
-import { OpenseaIcon } from "./icons/opensea-icon";
-import { PitchIcon } from "./icons/pitch-icon";
-import { RampIcon } from "./icons/ramp-icon";
-import { RaycastIcon } from "./icons/raycast-icon";
-import { RetoolIcon } from "./icons/retool-icon";
-import { VercelIcon } from "./icons/vercel-icon";
+import { AlanIcon } from "../icons/alan-icon";
+import { ArcIcon } from "../icons/arc-icon";
+import { CashAppIcon } from "../icons/cashapp-icon";
+import { DescriptIcon } from "../icons/descript-icon";
+import { LoomIcon } from "../icons/loom-icon";
+import { MercuryIcon } from "../icons/mercury-icon";
+import { OpenseaIcon } from "../icons/opensea-icon";
+import { PitchIcon } from "../icons/pitch-icon";
+import { RampIcon } from "../icons/ramp-icon";
+import { RaycastIcon } from "../icons/raycast-icon";
+import { RetoolIcon } from "../icons/retool-icon";
+import { VercelIcon } from "../icons/vercel-icon";
 
 export function Clients() {
   return (
