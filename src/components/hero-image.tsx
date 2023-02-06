@@ -1,17 +1,52 @@
-import classNames from 'classnames';
-import React from 'react';
-import { useInView } from 'react-intersection-observer';
+import classNames from "classnames";
+import React from "react";
+import { useInView } from "react-intersection-observer";
+
+const randomNumberBetween = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+type Line = {
+  id: string;
+  direction: "to top" | "to left";
+  size: number;
+  duration: number;
+};
 
 export function HeroImage() {
   const { ref, inView } = useInView({ threshold: 0.4, triggerOnce: true });
-  const [lines, setLines] = React.useState([
-    { direction: "to bottom", duration: 2000, size: 20, id: "test1" },
-    { direction: "to right", duration: 3000, size: 15, id: "test2" },
-  ]);
+  const [lines, setLines] = React.useState<Line[]>([]);
+  const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   function removeLine(id: string) {
     setLines(lines.filter((line) => line.id !== id));
   }
+
+  React.useEffect(() => {
+    if (!inView) return;
+
+    const renderLine = (timeout: number) => {
+      timeoutRef.current = setTimeout(() => {
+        setLines((lines) => [
+          ...lines,
+          {
+            direction: Math.random() > 0.5 ? "to top" : "to left",
+            duration: randomNumberBetween(1300, 3500),
+            size: randomNumberBetween(10, 30),
+            id: Math.random().toString(36).substring(7),
+          },
+        ]);
+
+        renderLine(randomNumberBetween(800, 2500));
+      }, timeout);
+    };
+
+    renderLine(randomNumberBetween(800, 1300));
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [inView, setLines]);
 
   return (
     <div ref={ref} className="isolate mt-[12.8rem] [perspective:2000px]">
@@ -38,10 +73,10 @@ export function HeroImage() {
                 }
                 className={classNames(
                   "absolute top-0 block bg-glow-lines",
-                  line.direction === "to right" &&
-                    `left-0 h-[1px] w-[calc(var(--size)*1rem)] animate-glow-line-horizontal`,
-                  line.direction === "to bottom" &&
-                    `right-0 h-[calc(var(--size)*1rem)] w-[1px] animate-glow-line-vertical`
+                  line.direction === "to left" &&
+                    `left-0 h-[1px] w-[calc(var(--size)*0.5rem)] animate-glow-line-horizontal md:w-[calc(var(--size)*1rem)]`,
+                  line.direction === "to top" &&
+                    `h-[calc(var(--size)*0.5rem) right-0 w-[1px] animate-glow-line-vertical md:h-[calc(var(--size)*1rem)]`
                 )}
               />
             );
